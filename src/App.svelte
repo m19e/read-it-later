@@ -1,5 +1,34 @@
 <script lang="ts">
     export let name: string;
+    $: targetURL = "";
+
+    import axios from "axios";
+
+    const config = {
+        headers: {
+            Accept: "application/json",
+            "Content-type": "application/json",
+        },
+    };
+
+    const main = () => {
+        chrome.tabs.getSelected(null, (tab) => {
+            const requestURL = localStorage.getItem("request_url");
+            const username = localStorage.getItem("username");
+            const text = tab.title + " : " + tab.url;
+
+            targetURL = text;
+
+            const postData = {
+                username,
+                content: text,
+            };
+
+            axios.post(requestURL, postData, config);
+        });
+    };
+
+    main();
 </script>
 
 <style>
@@ -10,7 +39,7 @@
         margin: 0 auto;
     }
 
-    h1 {
+    h3 {
         color: #ff3e00;
         text-transform: uppercase;
         font-size: 4em;
@@ -25,6 +54,5 @@
 </style>
 
 <main>
-    <h1>Hello {name}!</h1>
-    <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+    <h3>Read it later!</h3>
 </main>
