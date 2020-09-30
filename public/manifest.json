@@ -5,6 +5,10 @@
     "description": "This extension posts an url which you are watching to a discord channel.",
     "version": "0.1",
 
+    "icons": {
+        "128": "favicon.png"
+    },
+
     "permissions": ["tabs"],
 
     "browser_action": {
