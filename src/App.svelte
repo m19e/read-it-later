@@ -20,7 +20,7 @@
             targetURL = text;
 
             const postData = {
-                username,
+                username: "Later",
                 content: text,
             };
 
